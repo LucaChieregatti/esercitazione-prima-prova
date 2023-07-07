@@ -1,38 +1,33 @@
-import * as React from "react"
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
 } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import Homepage from "./components/homepage"
+import Navbar from "./navbar/navbar"
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Istituzione from "./components/istituzione"
+import Museo from "./components/museo"
+import Did from "./components/didattica"
+import Amichae from "./components/amichae"
+import orariecosti from "./components/orariecosti"
+import Footer from "./components/footer"
 
 export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
+  <div className="app">
+    <ChakraProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' Component={Homepage} />
+          <Route path='/homepage' Component={Homepage} />
+          <Route path='/istituzione' Component={Istituzione} />
+          <Route path='/museo' Component={Museo} />
+          <Route path='/didattica' Component={Did} />
+          <Route path='/amichae' Component={Amichae} />
+          <Route path='/orariecosti' Component={orariecosti} />
+        </Routes>
+      </Router>
+      <Footer/>
+    </ChakraProvider>
+  </div>
 )
